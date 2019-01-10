@@ -1,0 +1,11 @@
+$(this).addClass('current').siblings().removeClass('current');
+
+//¶¯Ì¬Éú³É
+$(document).on('click','.page01.fr a',function(){  
+    $(this).addClass('current').siblings().removeClass('current');
+    
+    
+   
+    Gethq(k,num,false);
+    
+ })

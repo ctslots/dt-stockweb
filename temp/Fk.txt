@@ -1,0 +1,87 @@
+function randomData() {
+        now = new Date(+now + oneDay);
+        value = value + Math.random() * 21 - 10;
+        return {
+        name: now.toString(),
+        value: [
+            [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
+            Math.round(value)
+        ]
+    }
+}
+
+var data = [];
+var now = +new Date(1997, 9, 3);
+var oneDay = 24 * 3600 * 1000;
+var value = Math.random() * 1000;
+for (var i = 0; i < 1000; i++) {
+    data.push(randomData());
+}
+option = {
+    tooltip : {
+        trigger: 'axis',
+        formatter: function (params) {
+            var res = '当前时间 : ' + params[0].value[0] ;
+            res += '<br/>  最新价 : ' + params[0].value[1] ;
+            return res;
+        },
+         axisPointer : {  
+                    type : 'line',  
+                    lineStyle : {  
+                        color : '#ff7d00',  
+                        width : 2,  
+                        type : 'dotted '  
+                    }  
+                } 
+    },
+    legend: {
+        data:['平安银行']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+
+    }, 
+   
+    calculable : true,
+    xAxis :{
+        type: 'time',
+        splitLine: {
+            show: false
+        },
+        
+     },
+    yAxis : [
+        {
+            type : 'value'
+
+        }
+    ],
+    series : [
+        {
+            name:'',
+            type:'line',
+            stack: '总量',
+            itemStyle: {normal:
+                {areaStyle: {type: 'default'}, 
+                 width:1,
+                 color:'#87C4E3',  
+                 lineStyle:{  
+                     color:'#87C4E3'  
+                 }
+
+                 }},
+            symbol:'none',
+            data: data
+        }
+
+       
+    ]
+};
+setInterval(function () {
